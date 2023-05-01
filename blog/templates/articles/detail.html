@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+<!-- prettier-ignore -->
+{% block title %} 
+{{ super() }}
+Article detail 
+{% endblock %}
+
+{% block body %}
+<h2 class="text-center">Article detail</h2>
+<div class="card">
+  <img src="..." class="card-img-top" alt="" />
+
+  <div class="card-body">
+    <h5 class="card-title">{{ article['title'] }}</h5>
+    <p class="card-text">{{ article['text'] }}</p>
+    <a
+      href="{{ url_for('user.user_detail', pk=article['author']['id'] ) }}"
+      class="btn btn-primary"
+      >Author: {{ article['author']['name'] }}</a
+    >
+  </div>
+</div>
+
+<!-- prettier-ignore -->
+{% endblock %}

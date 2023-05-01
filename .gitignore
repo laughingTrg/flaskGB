@@ -132,3 +132,5 @@ dmypy.json
 poetry.lock
 pyproject.toml
 
+# prettier-ignore file
+.prettierignore
