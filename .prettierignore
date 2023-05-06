@@ -1,0 +1,5 @@
+/* prettier-ignore-start */
+[x-upload]:not([dark]) {
+    --gray: {% acss_color 'gray-4white' %};
+}
+/* prettier-ignore-end */
