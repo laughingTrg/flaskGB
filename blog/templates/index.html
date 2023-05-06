@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+<!-- prettier-ignore -->
+{% block title %} 
+Main page
+{% endblock %}
+
+{% block body %}
+<div class="container text-center justify-content-between">
+  <h2 class="text-center">Welcome</h2>
+  <div class="row justify-content-between">
+    <div class="col justify-content-center">
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">Articles</h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="{{ url_for('article.article_list' ) }}" class="card-link"
+            >Go to Articles</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">Users</h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+          <a href="{{ url_for('user.user_list' ) }}" class="card-link"
+            >Go to Users</a
+          >
+        </div>
+      </div>
+
+      <!-- prettier-ignore -->
+      {% endblock %}
+    </div>
+  </div>
+</div>

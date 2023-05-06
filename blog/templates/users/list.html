@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+<!-- prettier-ignore -->
+{% block title %} 
+{{ super() }}
+Users list 
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 class="text-center">Users</h1>
+  {% for user_id in users %}
+  <div class="row">
+    <div class="col">
+      <a
+        href="{{ url_for('user.user_detail', pk=user_id) }}"
+        class="btn btn-outline-secondary mb-3"
+        role="button"
+        >{{ users[user_id]['name'] }}</a
+      >
+
+      <!-- prettier-ignore -->
+      {% endfor %}
+    </div>
+
+    {% endblock %}
+  </div>
+</div>

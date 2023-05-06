@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+<!-- prettier-ignore -->
+{% block title %} 
+{{ super() }}
+User detail 
+{% endblock %}
+
+{% block body %}
+<h2 class="text-center">User detail</h2>
+<div class="card">
+  <img src="..." class="card-img-top" alt="" />
+
+  <div class="card-body">
+    <h5 class="card-title mb-5">{{ user['name'] }}</h5>
+    <!-- <p class="card-text"></p>-->
+    <a href="{{ url_for('user.user_list' ) }}" class="btn btn-primary">Users</a>
+  </div>
+</div>
+
+<!-- prettier-ignore -->
+{% endblock %}
