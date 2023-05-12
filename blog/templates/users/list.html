@@ -9,14 +9,14 @@ Users list
 {% block body %}
 <div class="container">
   <h1 class="text-center">Users</h1>
-  {% for user_id in users %}
+  {% for user in users %}
   <div class="row">
     <div class="col">
       <a
-        href="{{ url_for('user.user_detail', pk=user_id) }}"
+        href="{{ url_for('user.user_detail', pk=user.id) }}"
         class="btn btn-outline-secondary mb-3"
         role="button"
-        >{{ users[user_id]['name'] }}</a
+        >{{ user.email }}</a
       >
 
       <!-- prettier-ignore -->

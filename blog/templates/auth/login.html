@@ -1,0 +1,36 @@
+<!-- prettier-ignore -->
+{% extends "base.html" %} 
+{% block title %} Login page {% endblock %} 
+{% block body %} 
+{% with messages = get_flashed_messages() %} 
+{% if messages %}
+<div class="alert alert-danger" role="alert">{{ messages[0] }}</div>
+{% endif %}
+<!-- prettier-ignore -->
+{% endwith %}
+
+<form class="row g-3" method="post" action="{{url_for('auth.login')}}">
+  <div class="col-auto">
+    <input
+      type="email"
+      class="form-control"
+      id="exampleFormControlInput1"
+      placeholder="name@example.com"
+      name="email"
+    />
+  </div>
+  <div class="col-auto">
+    <label for="password" class="visually-hidden">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      placeholder="Password"
+      name="password"
+    />
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary mb-3">Login</button>
+  </div>
+</form>
+{% endblock %}
