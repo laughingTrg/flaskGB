@@ -1,4 +1,4 @@
-from os import getenv, path
+from os import getenv, path, environ
 from flask import Flask
 from json import load
 #from .models import User
@@ -10,10 +10,12 @@ from blog.auth import views as auth_views
 from blog.extenshion import db, login_manager
 
 CONFIG_PATH = getenv("CONFIG_PATH", path.join("../config.json"))
+CFG_NAME = environ.get('CONFIG_NAME') 
 
 def create_app() -> Flask:
     app = Flask(__name__)
     app.config.from_file(CONFIG_PATH, load)
+    app.config.from_object(f'blog.config.{CFG_NAME}')
     register_extenshions(app)
     register_blueprints(app)
     return app
