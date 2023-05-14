@@ -4,5 +4,5 @@ index = Blueprint('index', __name__, static_folder='../static', url_prefix='/')
 
 @index.route('/')
 def index_page():
-    return render_template('index.html')
+    return render_template('index.html', endpoint='index')
 
