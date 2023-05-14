@@ -1,0 +1,27 @@
+version: "3.5"
+
+services:
+  app:
+    build:
+      dockerfile: ./Dockerfile
+      context: .
+    environment:
+      PYTHONUNBUFFERED: 1
+      SQLALCHEMY_DATABASE_URI: postgresql://user:password@pg:5432/blog
+      CONFIG_NAME: DevConfig
+    volumes:
+      - ./blog:/app/blog
+    ports:
+      - 5000:5000
+    depends_on:
+      - pg
+
+  pg:
+    image: postgres:10
+    container_name: flask-postgres
+    environment:
+      POSTGRES_DB: blog
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
