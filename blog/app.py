@@ -7,6 +7,7 @@ from blog.user import views as user_views
 from blog.article import views as article_views
 from blog.index import views as index_views
 from blog.auth import views as auth_views
+from blog.author import views as author_views
 from blog.extenshion import db, login_manager, migrate
 
 CFG_NAME = environ.get('CONFIG_NAME') 
@@ -23,6 +24,7 @@ def register_blueprints(app: Flask):
     app.register_blueprint(article_views.article)
     app.register_blueprint(index_views.index)
     app.register_blueprint(auth_views.auth)
+    app.register_blueprint(author_views.author)
 
 
 def register_extenshions(app: Flask):

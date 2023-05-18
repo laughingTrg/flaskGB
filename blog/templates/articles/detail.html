@@ -12,12 +12,13 @@ Article detail
   <img src="..." class="card-img-top" alt="" />
 
   <div class="card-body">
-    <h5 class="card-title">{{ article['title'] }}</h5>
-    <p class="card-text">{{ article['text'] }}</p>
+    <h5 class="card-title">{{ article.title }}</h5>
+    <p class="card-text">{{ article.text }}</p>
     <a
-      href="{{ url_for('user.user_detail', pk=article['author']['id'] ) }}"
+      href="{{ url_for('user.user_detail', pk=article.author.user_id ) }}"
       class="btn btn-primary"
-      >Author: {{ article['author']['name'] }}</a
+      >Author: {{ article.author.user.first_name }} {{
+      article.author.user.last_name }}</a
     >
   </div>
 </div>

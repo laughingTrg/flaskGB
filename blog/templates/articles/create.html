@@ -1,0 +1,23 @@
+<!-- prettier-ignore -->
+{% extends "base.html" %} 
+{% from "macro/formhelpers.html" import render_field %}
+{% block title %} Create new article {% endblock %} 
+{% block body %}
+<h1>Create article</h1>
+<!-- prettier-ignore -->
+{% with messages = get_flashed_messages() %}
+{% if error %}
+<div class="alert alert-danger" role="alert">{{ error }}</div>
+{% endif %}
+<!-- prettier-ignore -->
+{% endwith %}
+
+<form method="post">
+  <!-- prettier-ignore -->
+  {{ form.csrf_token }}
+  {% for field in ['title', 'text'] %}
+  {{ render_field(form[field]) }}
+  {% endfor %}
+  <div>{{ form.submit(class="btn btn-primary mb-3") }}</div>
+</form>
+{% endblock %}

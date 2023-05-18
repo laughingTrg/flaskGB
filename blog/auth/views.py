@@ -62,5 +62,5 @@ def register():
             error = "Could not create user!"
         else:
             login_user(user)
-            return redirect(url_for("index"))
+            return redirect("index")
     return render_template("auth/register.html", form=form, error=error)
