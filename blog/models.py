@@ -2,6 +2,13 @@ from datetime import datetime
 from flask_login import UserMixin
 from .app import db
 
+article_tag_association_table = db.Table(
+    'article_tag_association',
+    db.metadata,
+    db.Column('article_id', db.Integer, db.ForeignKey('articles.id'), nullable=False),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tags.id'), nullable=False),
+        )
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -42,4 +49,14 @@ class Article(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('authors.id'), nullable=False)
 
     author = db.relationship("Author", back_populates='articles')
+    tags = db.relationship("Tag", secondary=article_tag_association_table, back_populates='articles')
 
+class Tag(db.Model):
+    __tablename__ = 'tags'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+
+    articles = db.relationship("Article", secondary=article_tag_association_table, back_populates='tags')
+
+    

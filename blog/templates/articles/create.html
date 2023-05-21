@@ -15,7 +15,7 @@
 <form method="post">
   <!-- prettier-ignore -->
   {{ form.csrf_token }}
-  {% for field in ['title', 'text'] %}
+  {% for field in ['title', 'text', 'tags'] %}
   {{ render_field(form[field]) }}
   {% endfor %}
   <div>{{ form.submit(class="btn btn-primary mb-3") }}</div>
