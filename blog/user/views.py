@@ -4,18 +4,6 @@ from werkzeug.exceptions import NotFound
 
 user = Blueprint('user', __name__, static_folder='../static', url_prefix='/users')
 
-USERS = {
-        1: {
-            'name': 'Mike',
-            },
-        2: {
-            'name': 'Mary',
-            },
-        3: {
-            'name': 'Jeremy',
-            },
-        }
-
 @user.route('/')
 def user_list():
     from ..models import User

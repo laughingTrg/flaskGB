@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+<!-- prettier-ignore -->
+{% block title %} 
+Author detail 
+{% endblock %}
+
+{% block body %}
+<h1>
+  {{ author.user.first_name }} {{ author.user.last_name }} ({{ author.user.email
+  }})
+</h1>
+{% endblock %}

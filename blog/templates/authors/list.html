@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+<!-- prettier-ignore -->
+{% block title %} 
+Authors list 
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <h1 class="text-center">Authors</h1>
+  {% for author in authors %}
+  <div class="row">
+    <div class="col">
+      <a
+        href="{{ url_for('author.author_detail', pk=author.id) }}"
+        class="btn btn-outline-secondary mb-3"
+        role="button"
+        >{{ author.user.email }}</a
+      >
+
+      <!-- prettier-ignore -->
+      {% endfor %}
+    </div>
+
+    {% endblock %}
+  </div>
+</div>

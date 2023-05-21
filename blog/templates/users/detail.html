@@ -7,4 +7,16 @@ User detail
 
 {% block body %}
 <h1>{{ user.email }}</h1>
+<!-- prettier-ignore -->
+<h3>Articles:</h3>
+{% for article in user.author.articles %}
+<ul>
+  <li>
+    <a href="{{ url_for('article.article_detail', pk=article.id) }}"
+      >{{ article.title }}</a
+    >
+  </li>
+</ul>
+<!-- prettier-ignore -->
+{% endfor %} 
 {% endblock %}
