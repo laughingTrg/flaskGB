@@ -18,7 +18,8 @@ def article_list():
 def article_detail(pk: int):
     from blog.models import Article
     try:
-        article = Article.query.filter_by(id=pk).one_or_none()
+        article = Article.query.filter_by(id=pk).options(
+                db.joinedload(Article.tags)).one_or_none()
     except KeyError:
         return redirect('/articles/')
     return render_template('articles/detail.html',
@@ -28,8 +29,10 @@ def article_detail(pk: int):
 @article.route('/create', methods=['GET', 'POST'])
 @login_required
 def create_article():
+    from blog.models import Tag
     error = None
     form = ArticleBaseForm(request.form)
+    form.tags.choices = [(tag.id, tag.name) for tag in Tag.query.order_by('name')]
     if request.method == 'GET':
 
         if not current_user.is_authenticated:
@@ -40,7 +43,7 @@ def create_article():
 
 
     if form.validate_on_submit():
-        from blog.models import Article, Author
+        from blog.models import Article, Author, Tag
 
         title = form.title.data
         text = form.text.data
@@ -55,6 +58,10 @@ def create_article():
         author_id = current_user.author.id
 
         article = Article(title=title, text=text, author_id=author_id)
+        if form.tags.data:
+            selected_tags = Tag.query.filter(Tag.id.in_(form.tags.data))
+            for tag in selected_tags:
+                article.tags.append(tag)
         db.session.add(article)
 
         try:
@@ -65,4 +72,17 @@ def create_article():
         else:
             return redirect(url_for(".article_list"))
     
+@article.route('/<string:tag>', methods=['GET'])
+def articles_by_tag(tag):
+    from blog.models import Article, Tag
+    filter_tag = Tag.query.filter(Tag.name==tag).one_or_none()
+    if filter_tag:
+        articles = Article.query.filter(Article.tags.contains(filter_tag))
+        return render_template('articles/list.html',
+                           articles=articles)
+    error = f'For this tag "{tag}": articles are absent yet'
+    return render_template('articles/list.html',
+                           error=error)
+
+
 

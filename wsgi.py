@@ -24,3 +24,13 @@ def create_users():
     admin = User(email="admin@mail.com", name="Adminych", password=generate_password_hash("123"), is_staff=True)
     db.session.add(admin)
     db.session.commit()
+
+@app.cli.command('create-tags', help='create tags for articles')
+def create_tags():
+    from blog.models import Tag
+
+    for name in ['flask', 'django', 'python', 'database', 'rest']:
+        tag = Tag(name=name)
+        db.session.add(tag)
+    db.session.commit()
+    print('tags was created')

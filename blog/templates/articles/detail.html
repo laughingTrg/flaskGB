@@ -20,6 +20,17 @@ Article detail
       >Author: {{ article.author.user.first_name }} {{
       article.author.user.last_name }}</a
     >
+    <!-- prettier-ignore -->
+    {% if article.tags %}
+    <div>Tags:</div>
+    <ul>
+      {% for tag in article.tags %}
+      <a href="{{ url_for('article.articles_by_tag', tag=tag.name ) }}"
+        ><span class="badge text-bg-dark">{{ tag.name }}</span></a
+      >
+      {% endfor %}
+    </ul>
+    {% endif %}
   </div>
 </div>
 
