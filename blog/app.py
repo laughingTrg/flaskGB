@@ -9,6 +9,7 @@ from blog.index import views as index_views
 from blog.auth import views as auth_views
 from blog.author import views as author_views
 from blog.extenshion import db, login_manager, migrate
+from blog.admin import admin
 
 CFG_NAME = environ.get('CONFIG_NAME') 
 
@@ -34,6 +35,8 @@ def register_extenshions(app: Flask):
 
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
+
+    admin.init_app(app)
 
     @login_manager.user_loader
     def load_user(user_id):

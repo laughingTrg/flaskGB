@@ -8,6 +8,8 @@ class BaseConfig(object):
     SECRET_KEY = os.environ.get("SECRET_KEY")
     WTF_CSRF_TOKEN = True
 
+    FLASK_ADMIN_SWATCH = 'cosmo'
+
 class DevConfig(BaseConfig):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get("SQLALCHEMY_DATABASE_URI")
