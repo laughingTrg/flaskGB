@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask_login import UserMixin
-from .app import db
+from blog.extenshion import db
 
 article_tag_association_table = db.Table(
     'article_tag_association',
