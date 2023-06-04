@@ -2,7 +2,6 @@ from os import getenv, path, environ
 from flask import Flask
 from json import load
 from blog.api import init_api
-from blog import config as cfg
 #from .models import User
 
 from blog.user import views as user_views
@@ -17,7 +16,7 @@ CFG_NAME = environ.get('CONFIG_NAME')
 
 def create_app() -> Flask:
     app = Flask(__name__)
-    app.config.from_object(f'{cfg}.{CFG_NAME}')
+    app.config.from_object(f'blog.config.{CFG_NAME}')
     register_extenshions(app)
     register_blueprints(app)
     api = init_api(app)
