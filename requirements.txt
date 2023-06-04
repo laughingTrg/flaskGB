@@ -1,6 +1,5 @@
 alembic==1.10.4
 apispec==2.0.2
--e git+ssh://git@github.com/laughingTrg/flaskGB.git@319bc04a0598bd9b66547cfb3cabb84493c06826#egg=blog
 click==7.1.2
 ComboJSONAPI==1.0.5
 dnspython==2.3.0
