@@ -20,11 +20,12 @@ class User(db.Model, UserMixin):
     is_staff = db.Column(db.Boolean, nullable=False, default=False)
     author = db.relationship("Author", back_populates='user', uselist=False)
 
-    def __init__(self, email, password, first_name, last_name):
+    def __init__(self, email, password, first_name, last_name, is_staff=False):
         self.email = email
         self.password = password
         self.first_name = first_name
         self.last_name = last_name
+        self.is_staff = is_staff
 
     def __repr__(self):
         return '<User %r>' % (self.email)

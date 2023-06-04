@@ -19,13 +19,14 @@ def login():
     if request.method == "POST" and form.validate_on_submit():
         from ..models import User
 
+        messages = []
         email = form.email.data
         password = form.password.data
         user = User.query.filter_by(email=email).first()
     
         if not user or not check_password_hash(user.password, password):
-            flash('Check your login details')
-            return redirect(url_for('.login', form=form))
+            messages.append('Check your login details')
+            return redirect(url_for('.login', form=form, messages=messages))
         login_user(user)
         return redirect(url_for('user.user_detail', pk=user.id))
 
